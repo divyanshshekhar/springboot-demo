@@ -77,11 +77,33 @@ public class Standard implements Serializable{
 			StandardPK other = (StandardPK) obj;
 			return Objects.equals(section, other.section) && Objects.equals(std, other.std);
 		}
+
+		public Integer getStd() {
+			return std;
+		}
+
+		public void setStd(Integer std) {
+			this.std = std;
+		}
+
+		public String getSection() {
+			return section;
+		}
+
+		public void setSection(String section) {
+			this.section = section;
+		}
+		
+		/*
+		@Override
+		public String toString() {
+			return std + "_" + section;
+		}*/
 	} 
 	
 	@Override
 	public String toString() {
-		return getStd() + " " + getSection();
+		return getStd() + "_" + getSection();
 	}
 	
 }
