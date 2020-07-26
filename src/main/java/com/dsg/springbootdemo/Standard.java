@@ -3,6 +3,7 @@ package com.dsg.springbootdemo;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -15,7 +16,6 @@ import com.dsg.springbootdemo.Standard.StandardPK;
  *
  */
 @Entity
-@IdClass(StandardPK.class)
 public class Standard implements Serializable{
 	/**
 	 * Required for Serializability.
@@ -23,32 +23,30 @@ public class Standard implements Serializable{
 	private static final long serialVersionUID = -4691762450201603697L;
 
 	@Id
-	private Integer std;
-	
-	@Id
-	private String section;
+	private StandardPK standardPK;
 
 	
 	public Integer getStd() {
-		return std;
+		return standardPK.std;
 	}
-
+	/*
 	public void setStd(Integer std) {
 		this.std = std;
-	}
+	}*/
 
 	public String getSection() {
-		return section;
+		return standardPK.section;
 	}
-
+	/*
 	public void setSection(String section) {
 		this.section = section;
-	}
+	}*/
 	
 	/**
 	 * Primary Key for Standard class.
 	 * @author dg185245
 	 */
+	@Embeddable
 	public static class StandardPK implements Serializable{
 		protected Integer std;
 		protected String section;
@@ -83,7 +81,7 @@ public class Standard implements Serializable{
 	
 	@Override
 	public String toString() {
-		return std + " " + section;
+		return getStd() + " " + getSection();
 	}
 	
 }
