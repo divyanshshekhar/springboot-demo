@@ -29,18 +29,18 @@ public class Standard implements Serializable{
 	public Integer getStd() {
 		return standardPK.std;
 	}
-	/*
+	
 	public void setStd(Integer std) {
-		this.std = std;
-	}*/
+		standardPK.std = std;
+	}
 
 	public String getSection() {
 		return standardPK.section;
 	}
-	/*
+	
 	public void setSection(String section) {
-		this.section = section;
-	}*/
+		standardPK.section = section;
+	}
 	
 	/**
 	 * Primary Key for Standard class.
