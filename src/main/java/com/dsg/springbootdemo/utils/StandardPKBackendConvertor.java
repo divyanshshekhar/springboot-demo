@@ -6,8 +6,9 @@ import org.springframework.data.rest.webmvc.spi.BackendIdConverter;
 import org.springframework.stereotype.Component;
 
 import com.dsg.springbootdemo.Standard;
+import com.dsg.springbootdemo.Standard.StandardPK;
 
-
+/*
 @Component
 public class StandardPKBackendConvertor implements BackendIdConverter {
 	
@@ -40,3 +41,4 @@ public class StandardPKBackendConvertor implements BackendIdConverter {
 		return Standard.StandardPK.class.equals(type);
 	}
 }
+*/

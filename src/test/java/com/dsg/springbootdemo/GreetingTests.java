@@ -1,4 +1,4 @@
-package com.dsg.springsecurity;
+package com.dsg.springbootdemo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -17,6 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @SpringBootTest
 @AutoConfigureMockMvc
 public class GreetingTests {
+	/*
 	@Autowired
 	private MockMvc mvc;
 
@@ -45,5 +46,5 @@ public class GreetingTests {
 			.andExpect((result) -> {
 				assertEquals("Hello, Manoj", new ObjectMapper().readValue(result.getResponse().getContentAsString(), Greeting.class).getContent());
 			});
-	}
+	}*/
 }
