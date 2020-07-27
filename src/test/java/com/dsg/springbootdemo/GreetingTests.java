@@ -17,13 +17,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @SpringBootTest
 @AutoConfigureMockMvc
 public class GreetingTests {
-	/*
+	
 	@Autowired
 	private MockMvc mvc;
 
 	@Test
 	public void greetWorld() throws Exception{
-		mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON))
+		mvc.perform(MockMvcRequestBuilders.get("/greeting").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect((result) -> {
 				assertEquals("Hello, World", new ObjectMapper().readValue(result.getResponse().getContentAsString(), Greeting.class).getContent());
@@ -32,7 +32,7 @@ public class GreetingTests {
 	
 	@Test
 	public void greetRahul() throws Exception{
-		mvc.perform(MockMvcRequestBuilders.get("/").param("name", "Rahul").accept(MediaType.APPLICATION_JSON))
+		mvc.perform(MockMvcRequestBuilders.get("/greeting").param("name", "Rahul").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect((result) -> {
 				assertEquals("Hello, Rahul", new ObjectMapper().readValue(result.getResponse().getContentAsString(), Greeting.class).getContent());
@@ -41,10 +41,10 @@ public class GreetingTests {
 	
 	@Test
 	public void greetManoj() throws Exception{
-		mvc.perform(MockMvcRequestBuilders.get("/").param("name", "Manoj").accept(MediaType.APPLICATION_JSON))
+		mvc.perform(MockMvcRequestBuilders.get("/greeting").param("name", "Manoj").accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect((result) -> {
 				assertEquals("Hello, Manoj", new ObjectMapper().readValue(result.getResponse().getContentAsString(), Greeting.class).getContent());
 			});
-	}*/
+	}
 }
