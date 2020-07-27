@@ -23,9 +23,21 @@ public class Standard implements Serializable{
 	private static final long serialVersionUID = -4691762450201603697L;
 
 	@Id
-	private StandardPK standardPK;
-
+	private StandardPK standardPK;	
 	
+	public Standard() {
+		standardPK = new StandardPK();
+	}
+
+	public Standard(StandardPK standardPK) {
+		super();
+		this.standardPK = standardPK;
+	}
+
+	public Standard(Integer std, String section) {
+		this(new StandardPK(std, section));
+	}
+
 	public Integer getStd() {
 		return standardPK.std;
 	}
