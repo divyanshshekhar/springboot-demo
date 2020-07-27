@@ -5,6 +5,6 @@ WORKDIR /tmp/
 RUN mvn package
 
 FROM openjdk:8-jre-slim-buster
-COPY --from=build /tmp/target/springboot-demo-0.0.1-SNAPSHOT.jar /usr/local/lib/app.jar
+COPY --from=build /tmp/target/springbootdemo-0.0.2-SNAPSHOT.jar /usr/local/lib/app.jar
 EXPOSE 8080
 CMD java -jar /usr/local/lib/app.jar
