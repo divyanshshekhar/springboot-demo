@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.dsg.springbootdemo.Standard.StandardPK;
 
+@RepositoryRestResource
 public interface StandardRepo extends PagingAndSortingRepository<Standard, StandardPK> {
 
 	/*

@@ -8,37 +8,26 @@ import java.util.List;
 import com.fasterxml.classmate.TypeResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.context.request.async.DeferredResult;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.builders.RequestParameterBuilder;
-import springfox.documentation.builders.ResponseBuilder;
-import springfox.documentation.schema.ScalarType;
-import springfox.documentation.service.ApiKey;
-import springfox.documentation.service.AuthorizationScope;
-import springfox.documentation.service.ParameterType;
-import springfox.documentation.service.SecurityReference;
 import springfox.documentation.service.Tag;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger.web.DocExpansion;
-import springfox.documentation.swagger.web.ModelRendering;
-import springfox.documentation.swagger.web.OperationsSorter;
-import springfox.documentation.swagger.web.SecurityConfiguration;
-import springfox.documentation.swagger.web.SecurityConfigurationBuilder;
-import springfox.documentation.swagger.web.TagsSorter;
-import springfox.documentation.swagger.web.UiConfiguration;
-import springfox.documentation.swagger.web.UiConfiguration.Constants;
-import springfox.documentation.swagger.web.UiConfigurationBuilder;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import static springfox.documentation.schema.AlternateTypeRules.newRule;
 
 @Configuration
+@EnableSwagger2
+@Import({springfox.documentation.spring.data.rest.configuration.SpringDataRestConfiguration.class})
 public class SwaggerConfig {
     @Autowired
     private TypeResolver typeResolver;
@@ -47,16 +36,20 @@ public class SwaggerConfig {
     public Docket greetingApi(){
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
-                .build()
-                .pathMapping("/")
+                //A.apis(RequestHandlerSelectors.basePackage(Application.class.getPackage().getName()))
+                //.paths(PathSelectors.ant("/students*")
+                //        .or(PathSelectors.ant("/standards*"))
+                //                .or(PathSelectors.regex("/greeting")))
+                //                       .or(PathSelectors.regex("")))))
+                .build();
+                /*.pathMapping("/")
                 .directModelSubstitute(LocalDate.class, String.class)
                 .genericModelSubstitutes(ResponseEntity.class)
                 .alternateTypeRules(
                         newRule(typeResolver.resolve(DeferredResult.class,
                                 typeResolver.resolve(ResponseEntity.class, WildcardType.class)),
-                                typeResolver.resolve(WildcardType.class)))
-                .useDefaultResponseMessages(false)
+                                typeResolver.resolve(WildcardType.class)))*/
+                /*.useDefaultResponseMessages(false)
                 .globalResponses(HttpMethod.GET,
                         Collections.singletonList(new ResponseBuilder()
                                 .code("500")
@@ -69,8 +62,8 @@ public class SwaggerConfig {
                                                                 k.qualifiedModelName(q ->
                                                                         q.namespace("some:namespace")
                                                                             .name("ERROR"))))))
-                                .build()))
-                .securitySchemes(Collections.singletonList(apiKey()))
+                                .build()))*/
+                /*.securitySchemes(Collections.singletonList(apiKey()))
                 .securityContexts(Collections.singletonList(securityContext()))
                 .enableUrlTemplating(true)
                 .globalRequestParameters(
@@ -81,11 +74,11 @@ public class SwaggerConfig {
                                 .required(true)
                                 .query(q -> q.model(m -> m.scalarModel(ScalarType.STRING)))
                                 .build()))
-                .tags(new Tag("Student service", "All apis relating to students"));
+                .tags(new Tag("Student service", "All apis relating to students"));*/
                 //.additionalModels(typeResolver.resolve(AdditionalModel.class));
 
     }
-
+    /*
     private ApiKey apiKey(){
         return new ApiKey("mykey", "api_key", "header");
     }
@@ -93,7 +86,7 @@ public class SwaggerConfig {
     private SecurityContext securityContext(){
         return SecurityContext.builder()
                 .securityReferences(defaultAuth())
-                .forPaths(PathSelectors.regex("/anyPath.*"))
+                .forPaths(PathSelectors.regex("/*"))
                 .build();
     }
 
@@ -121,8 +114,8 @@ public class SwaggerConfig {
         return UiConfigurationBuilder.builder()
                 .deepLinking(true)
                 .displayOperationId(false)
-                .defaultModelExpandDepth(1)
-                .defaultModelsExpandDepth(1)
+                //.defaultModelExpandDepth(1)
+                //.defaultModelsExpandDepth(1)
                 .defaultModelRendering(ModelRendering.EXAMPLE)
                 .displayRequestDuration(false)
                 .docExpansion(DocExpansion.NONE)
@@ -135,5 +128,5 @@ public class SwaggerConfig {
                 .supportedSubmitMethods(Constants.DEFAULT_SUBMIT_METHODS)
                 .validatorUrl(null)
                 .build();
-    }
+    }*/
 }
